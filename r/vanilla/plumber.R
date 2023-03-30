@@ -5,6 +5,6 @@ library(plumber)
 
 #* @param x a string specifying the desired emoji
 #* @post /any
-function(x  = "thumb") {
-  emoji::emoji(x)
+function(text  = "thumb") {
+  emoji::emoji(text)
 }

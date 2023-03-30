@@ -37,10 +37,20 @@ sequenceDiagram
 
 ## why
 
-- language independent resource consumption 
-  - i.e. "I don't care what your program is written in as long as it answers my question"
-- [model](https://rstudio.github.io/vetiver-r/) [serving](https://rstudio.github.io/vetiver-python/stable/)
+language independent resource consumption  
+
+> "I don't care what your program is written in as long as it answers my question"
+
 - complicated business logic
+- [model](https://rstudio.github.io/vetiver-r/) [serving](https://rstudio.github.io/vetiver-python/stable/)
+
+## model serving
+
+```{mermaid}
+sequenceDiagram
+	tableau ->> connect: data
+	connect -->> tableau: prediction
+```
 
 ## VERBS
 
@@ -90,13 +100,13 @@ sequenceDiagram
 | [Sanic](https://sanic.dev/)     | :white_check_mark: |
 | [Falcon](https://falconframework.org/)    | :white_check_mark: | 
 
-:::
-:::
-
 ::: fragment
 [wsgi](https://wsgi.readthedocs.io/en/latest/what.html), [asgi](https://asgi.readthedocs.io/en/latest/)
 :::
 
+:::
+
+:::
 
 ##  will it tableau
 
@@ -108,10 +118,10 @@ sequenceDiagram
 | framework                                         | tableau            | 
 | ------------------------------------------------- | -------            |
 | [plumber](https://www.rplumber.io/)               | :white_check_mark: |
-| [RServe](https://www.rforge.net/Rserve/)          | :white_check_mark: |
+| [RServe](https://www.rforge.net/Rserve/)          |   🫳               |
+| [RestRserve](https://restrserve.org/)             |                    |
 | [fiery](https://fiery.data-imaginist.com/)        |                    |
 | [ambiorix](https://github.com/devOpifex/ambiorix) |                    |
-| [RestRserve](https://restrserve.org/)             |                    |
 
 :::
 
@@ -139,6 +149,9 @@ function decorators:
 ### FastAPI
 
 ```python
+from fastapi import FastAPI
+app = FastAPI()
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -147,6 +160,7 @@ def read_root():
 ### Plumber
 
 ```r
+library(plumber)
 #* Echo back the input
 #* @param msg The message to echo
 #* @get /echo
@@ -192,17 +206,60 @@ python -m pip install -r requirements.txt
 
 # an aside on Python environments
 
+## the iron law of python management
+
+[create a virtual environment for **every** project.](https://solutions.posit.co/write-code/minimum-viable-python/installing-packages/#the-iron-law-of-python-management)
+
 ## exercise 2
 
-1. install `httpie`
-2. using `httpie`, test calling the API in your development environment
-   - use the shorthand syntax for `localhost`
+install `httpie`
+
+```bash
+python -m pip install pipx
+python -m pipx ensurepath
+exec $SHELL
+pipx install httpie
+```
+
+test the api locally
+
+```bash
+http :PORT/any text="thumb"
+http :PORT/any text="smile"
+```
 
 # deployment
+
+## Connect
+
+- [API keys](https://docs.posit.co/connect/user/api-keys/#api-keys)
 
 ## exercise 3
 
 deploy your vanilla API to Connect
+
+::: {.panel-tabset}
+### R
+
+use push-button deployment
+
+or
+
+generate a manifest and use the CLI
+
+```r
+rsconnect::writeManifest()
+```
+```bash
+rsconnect deploy manifest manifest.json 
+```
+
+### Python
+
+```bash
+rsconnect deploy fastapi . 
+```
+:::
 
 # tableau analytics extensions
 

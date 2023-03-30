@@ -7,8 +7,8 @@ library(plumbertableau)
 #* @tableauArg x:character specifying desired emoji
 #* @tableauReturn character random emoji
 #* @post /any
-function(x  = "thumb") {
-  emoji::emoji(x)
+function(text  = "thumb") {
+  emoji::emoji(text)
 }
 
 #* @plumber
