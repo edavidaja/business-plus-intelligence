@@ -1,0 +1,211 @@
+---
+format: 
+    revealjs: 
+        theme: dark
+        navigation-mode: grid
+        transition: fade
+from: markdown+emoji
+---
+
+# business 🤝 intelligence
+
+enhancing tableau with web APIs
+
+## agenda
+
+- web APIs & frameworks
+- development workflows
+- deployment
+- analytics extensions
+
+# web APIs & frameworks
+
+## what?
+
+> A server-side web API consists of one or more publicly exposed endpoints to a defined request–response message system, typically expressed in JSON or XML.
+>
+> -- [Wikipedia](https://en.wikipedia.org/wiki/Web_API)
+
+## what?
+
+```{mermaid}
+
+sequenceDiagram
+    client ->> server: request
+    server -->> client: response
+```
+
+## why
+
+- language independent resource consumption 
+  - i.e. "I don't care what your program is written in as long as it answers my question"
+- [model](https://rstudio.github.io/vetiver-r/) [serving](https://rstudio.github.io/vetiver-python/stable/)
+- complicated business logic
+
+## VERBS
+
+- `GET`
+- `POST`
+- `PATCH`
+- `PUT`
+- `DELETE`
+
+## VERBS [and theology](https://stackoverflow.com/questions/630453/what-is-the-difference-between-post-and-put-in-http)
+
+"crud"
+
+- `GET` (read)
+- `POST` (create | update)
+- `PATCH` (update)
+- `PUT` (create | update)
+- `DELETE` (delete)
+
+
+## frameworks
+
+::: columns
+
+::: column
+### R
+
+| framework                                  | connect             |
+| -------------------------------------------| :------------------:|
+| [plumber](https://www.rplumber.io/)        | :white_check_mark:  |
+| [RServe](https://www.rforge.net/Rserve/)   |                     |
+| [RestRserve](https://restrserve.org/)      |                     |
+| [fiery](https://fiery.data-imaginist.com/) |                     |
+| [ambiorix](https://ambiorix.dev/)          |                     |
+
+
+:::
+
+::: column
+### Python
+
+| framework |      connect       |
+| --------- |:------------------:|
+| [flask](https://flask.palletsprojects.com/en/2.2.x/)     | :white_check_mark: |
+| [FastAPI](https://fastapi.tiangolo.com/)   | :white_check_mark: |
+| [Quart](https://quart.palletsprojects.com/en/latest/)     | :white_check_mark: |
+| [Sanic](https://sanic.dev/)     | :white_check_mark: |
+| [Falcon](https://falconframework.org/)    | :white_check_mark: | 
+
+:::
+:::
+
+::: fragment
+[wsgi](https://wsgi.readthedocs.io/en/latest/what.html), [asgi](https://asgi.readthedocs.io/en/latest/)
+:::
+
+
+##  will it tableau
+
+::: columns
+
+::: column
+### R
+
+| framework                                         | tableau            | 
+| ------------------------------------------------- | -------            |
+| [plumber](https://www.rplumber.io/)               | :white_check_mark: |
+| [RServe](https://www.rforge.net/Rserve/)          | :white_check_mark: |
+| [fiery](https://fiery.data-imaginist.com/)        |                    |
+| [ambiorix](https://github.com/devOpifex/ambiorix) |                    |
+| [RestRserve](https://restrserve.org/)             |                    |
+
+:::
+
+::: column
+### Python
+
+| framework                                             | tableau | 
+| ----------------------------------------------------- | ------- |
+| [flask](https://flask.palletsprojects.com/en/2.2.x/)  |         |
+| [FastAPI](https://fastapi.tiangolo.com/)              | :white_check_mark:        |
+| [Quart](https://quart.palletsprojects.com/en/latest/) |         |
+| [Sanic](https://sanic.dev/)                           |         |
+| [Falcon](https://falconframework.org/)                |         |
+
+see also: [tabpy](https://github.com/tableau/TabPy)
+:::
+:::
+
+## the code
+
+function decorators:
+
+::: {.panel-tabset}
+
+### FastAPI
+
+```python
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+```
+
+### Plumber
+
+```r
+#* Echo back the input
+#* @param msg The message to echo
+#* @get /echo
+function(msg="") {
+  list(msg = paste0("The message is: '", msg, "'"))
+}
+```
+:::
+
+# development
+
+## API docs
+
+- OpenAPI docs let you interact with an API from the web  
+- [httpbin](https://httpbin.org)
+- FastAPI and Plumber generate these from your code
+  - Flask supports these through additional packages
+
+## exercise 1
+
+1. build the exercise environment in your preferred language 
+2. go to the "vanilla" folder
+3. launch the API and explore its behavior from the docs
+
+::: {.panel-tabset}
+### R
+```r
+renv::restore()
+```
+### Python
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -U pip setuptools wheel
+python -m pip install -r requirements.txt
+```
+:::
+
+## testing from the command line
+
+- [`curl`](https://curl.se/): universally available, powerful, a bit onerous when data is involved
+- [`httpie`](https://httpie.io/cli): simple syntax, great for quick testing, written in Python
+
+# an aside on Python environments
+
+## exercise 2
+
+1. install `httpie`
+2. using `httpie`, test calling the API in your development environment
+   - use the shorthand syntax for `localhost`
+
+# deployment
+
+## exercise 3
+
+deploy your vanilla API to Connect
+
+# tableau analytics extensions
+
+## exercise 4
+
+start the tableau version of the API in your preferred language
