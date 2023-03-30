@@ -25,7 +25,14 @@
     "href": "slides/index.html#why",
     "title": "business-intelligence",
     "section": "why",
-    "text": "why\n\nlanguage independent resource consumption\n\ni.e. “I don’t care what your program is written in as long as it answers my question”\n\nmodel serving\ncomplicated business logic"
+    "text": "why\nlanguage independent resource consumption\n\n“I don’t care what your program is written in as long as it answers my question”\n\n\ncomplicated business logic\nmodel serving"
+  },
+  {
+    "objectID": "slides/index.html#model-serving",
+    "href": "slides/index.html#model-serving",
+    "title": "business-intelligence",
+    "section": "model serving",
+    "text": "model serving\n\n\n\n\n\nsequenceDiagram\n    tableau -&gt;&gt; connect: data\n    connect --&gt;&gt; tableau: prediction"
   },
   {
     "objectID": "slides/index.html#verbs",
@@ -46,21 +53,21 @@
     "href": "slides/index.html#frameworks",
     "title": "business-intelligence",
     "section": "frameworks",
-    "text": "frameworks\n\n\nR\n\n\n\nframework\nconnect\n\n\n\n\nplumber\n✅\n\n\nRServe\n\n\n\nRestRserve\n\n\n\nfiery\n\n\n\nambiorix\n\n\n\n\n\nPython\n\n\n\nframework\nconnect\n\n\n\n\nflask\n✅\n\n\nFastAPI\n✅\n\n\nQuart\n✅\n\n\nSanic\n✅\n\n\nFalcon\n✅\n\n\n\n\n\n\nwsgi, asgi"
+    "text": "frameworks\n\n\nR\n\n\n\nframework\nconnect\n\n\n\n\nplumber\n✅\n\n\nRServe\n\n\n\nRestRserve\n\n\n\nfiery\n\n\n\nambiorix\n\n\n\n\n\nPython\n\n\n\nframework\nconnect\n\n\n\n\nflask\n✅\n\n\nFastAPI\n✅\n\n\nQuart\n✅\n\n\nSanic\n✅\n\n\nFalcon\n✅\n\n\n\n\nwsgi, asgi"
   },
   {
     "objectID": "slides/index.html#will-it-tableau",
     "href": "slides/index.html#will-it-tableau",
     "title": "business-intelligence",
     "section": "will it tableau",
-    "text": "will it tableau\n\n\nR\n\n\n\nframework\ntableau\n\n\n\n\nplumber\n✅\n\n\nRServe\n✅\n\n\nfiery\n\n\n\nambiorix\n\n\n\nRestRserve\n\n\n\n\n\nPython\n\n\n\nframework\ntableau\n\n\n\n\nflask\n\n\n\nFastAPI\n✅\n\n\nQuart\n\n\n\nSanic\n\n\n\nFalcon\n\n\n\n\nsee also: tabpy"
+    "text": "will it tableau\n\n\nR\n\n\n\nframework\ntableau\n\n\n\n\nplumber\n✅\n\n\nRServe\n🫳\n\n\nRestRserve\n\n\n\nfiery\n\n\n\nambiorix\n\n\n\n\n\nPython\n\n\n\nframework\ntableau\n\n\n\n\nflask\n\n\n\nFastAPI\n✅\n\n\nQuart\n\n\n\nSanic\n\n\n\nFalcon\n\n\n\n\nsee also: tabpy"
   },
   {
     "objectID": "slides/index.html#the-code",
     "href": "slides/index.html#the-code",
     "title": "business-intelligence",
     "section": "the code",
-    "text": "the code\nfunction decorators:\n\nFastAPIPlumber\n\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\n\n\n#* Echo back the input\n#* @param msg The message to echo\n#* @get /echo\nfunction(msg=\"\") {\n  list(msg = paste0(\"The message is: '\", msg, \"'\"))\n}"
+    "text": "the code\nfunction decorators:\n\nFastAPIPlumber\n\n\nfrom fastapi import FastAPI\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\n\n\nlibrary(plumber)\n#* Echo back the input\n#* @param msg The message to echo\n#* @get /echo\nfunction(msg=\"\") {\n  list(msg = paste0(\"The message is: '\", msg, \"'\"))\n}"
   },
   {
     "objectID": "slides/index.html#api-docs",
@@ -84,18 +91,32 @@
     "text": "testing from the command line\n\ncurl: universally available, powerful, a bit onerous when data is involved\nhttpie: simple syntax, great for quick testing, written in Python"
   },
   {
+    "objectID": "slides/index.html#the-iron-law-of-python-management",
+    "href": "slides/index.html#the-iron-law-of-python-management",
+    "title": "business-intelligence",
+    "section": "the iron law of python management",
+    "text": "the iron law of python management\ncreate a virtual environment for every project."
+  },
+  {
     "objectID": "slides/index.html#exercise-2",
     "href": "slides/index.html#exercise-2",
     "title": "business-intelligence",
     "section": "exercise 2",
-    "text": "exercise 2\n\ninstall httpie\nusing httpie, test calling the API in your development environment\n\nuse the shorthand syntax for localhost"
+    "text": "exercise 2\ninstall httpie\npython -m pip install pipx\npython -m pipx ensurepath\nexec $SHELL\npipx install httpie\ntest the api locally\nhttp :PORT/any text=\"thumb\"\nhttp :PORT/any text=\"smile\""
+  },
+  {
+    "objectID": "slides/index.html#connect",
+    "href": "slides/index.html#connect",
+    "title": "business-intelligence",
+    "section": "Connect",
+    "text": "Connect\n\nAPI keys"
   },
   {
     "objectID": "slides/index.html#exercise-3",
     "href": "slides/index.html#exercise-3",
     "title": "business-intelligence",
     "section": "exercise 3",
-    "text": "exercise 3\ndeploy your vanilla API to Connect"
+    "text": "exercise 3\ndeploy your vanilla API to Connect\n\nRPython\n\n\nuse push-button deployment\nor\ngenerate a manifest and use the CLI\nrsconnect::writeManifest()\nrsconnect deploy manifest manifest.json \n\n\nrsconnect deploy fastapi ."
   },
   {
     "objectID": "slides/index.html#exercise-4",

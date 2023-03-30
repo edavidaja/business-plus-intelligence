@@ -435,14 +435,30 @@
 </section>
 <section id="why" class="slide level2">
 <h2>why</h2>
+<p>language independent resource consumption</p>
+<blockquote>
+<p>“I don’t care what your program is written in as long as it answers my question”</p>
+</blockquote>
 <ul>
-<li>language independent resource consumption
-<ul>
-<li>i.e.&nbsp;“I don’t care what your program is written in as long as it answers my question”</li>
-</ul></li>
-<li><a href="https://rstudio.github.io/vetiver-r/">model</a> <a href="https://rstudio.github.io/vetiver-python/stable/">serving</a></li>
 <li>complicated business logic</li>
+<li><a href="https://rstudio.github.io/vetiver-r/">model</a> <a href="https://rstudio.github.io/vetiver-python/stable/">serving</a></li>
 </ul>
+</section>
+<section id="model-serving" class="slide level2">
+<h2>model serving</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">sequenceDiagram
+    tableau -&gt;&gt; connect: data
+    connect --&gt;&gt; tableau: prediction
+</pre>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="verbs" class="slide level2">
 <h2>VERBS</h2>
@@ -532,10 +548,10 @@
 </tr>
 </tbody>
 </table>
-</div>
-</div>
 <div class="fragment">
 <p><a href="https://wsgi.readthedocs.io/en/latest/what.html">wsgi</a>, <a href="https://asgi.readthedocs.io/en/latest/">asgi</a></p>
+</div>
+</div>
 </div>
 </section>
 <section id="will-it-tableau" class="slide level2">
@@ -557,18 +573,18 @@
 </tr>
 <tr class="even">
 <td><a href="https://www.rforge.net/Rserve/">RServe</a></td>
-<td><span class="emoji" data-emoji="white_check_mark">✅</span></td>
-</tr>
-<tr class="odd">
-<td><a href="https://fiery.data-imaginist.com/">fiery</a></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><a href="https://github.com/devOpifex/ambiorix">ambiorix</a></td>
-<td></td>
+<td>🫳</td>
 </tr>
 <tr class="odd">
 <td><a href="https://restrserve.org/">RestRserve</a></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><a href="https://fiery.data-imaginist.com/">fiery</a></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><a href="https://github.com/devOpifex/ambiorix">ambiorix</a></td>
 <td></td>
 </tr>
 </tbody>
@@ -616,17 +632,21 @@
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">FastAPI</a></li><li><a href="#tabset-1-2">Plumber</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="at">@app.get</span>(<span class="st">"/"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">def</span> read_root():</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    <span class="cf">return</span> {<span class="st">"Hello"</span>: <span class="st">"World"</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI</span>
+<span id="cb1-2"><a href="#cb1-2"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="at">@app.get</span>(<span class="st">"/"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">def</span> read_root():</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="cf">return</span> {<span class="st">"Hello"</span>: <span class="st">"World"</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="tabset-1-2">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#* Echo back the input</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#* @param msg The message to echo</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#* @get /echo</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="cf">function</span>(<span class="at">msg=</span><span class="st">""</span>) {</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">list</span>(<span class="at">msg =</span> <span class="fu">paste0</span>(<span class="st">"The message is: '"</span>, msg, <span class="st">"'"</span>))</span>
-<span id="cb2-6"><a href="#cb2-6"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(plumber)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">#* Echo back the input</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#* @param msg The message to echo</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#* @get /echo</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="cf">function</span>(<span class="at">msg=</span><span class="st">""</span>) {</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">list</span>(<span class="at">msg =</span> <span class="fu">paste0</span>(<span class="st">"The message is: '"</span>, msg, <span class="st">"'"</span>))</span>
+<span id="cb2-7"><a href="#cb2-7"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -682,24 +702,50 @@
 <h1>an aside on Python environments</h1>
 
 </section>
+<section id="the-iron-law-of-python-management" class="slide level2">
+<h2>the iron law of python management</h2>
+<p><a href="https://solutions.posit.co/write-code/minimum-viable-python/installing-packages/#the-iron-law-of-python-management">create a virtual environment for <strong>every</strong> project.</a></p>
+</section>
 <section id="exercise-2" class="slide level2">
 <h2>exercise 2</h2>
-<ol type="1">
-<li>install <code>httpie</code></li>
-<li>using <code>httpie</code>, test calling the API in your development environment
-<ul>
-<li>use the shorthand syntax for <code>localhost</code></li>
-</ul></li>
-</ol>
+<p>install <code>httpie</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install pipx</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="ex">python</span> <span class="at">-m</span> pipx ensurepath</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="bu">exec</span> <span class="va">$SHELL</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="ex">pipx</span> install httpie</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>test the api locally</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="ex">http</span> :PORT/any text=<span class="st">"thumb"</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">http</span> :PORT/any text=<span class="st">"smile"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="deployment" class="title-slide slide level1 center">
 <h1>deployment</h1>
 
 </section>
+<section id="connect" class="slide level2">
+<h2>Connect</h2>
+<ul>
+<li><a href="https://docs.posit.co/connect/user/api-keys/#api-keys">API keys</a></li>
+</ul>
+</section>
 <section id="exercise-3" class="slide level2">
 <h2>exercise 3</h2>
 <p>deploy your vanilla API to Connect</p>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">R</a></li><li><a href="#tabset-3-2">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<p>use push-button deployment</p>
+<p>or</p>
+<p>generate a manifest and use the CLI</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>rsconnect<span class="sc">::</span><span class="fu">writeManifest</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="ex">rsconnect</span> deploy manifest manifest.json </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-3-2">
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="ex">rsconnect</span> deploy fastapi . </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="tableau-analytics-extensions" class="title-slide slide level1 center">
@@ -807,7 +853,7 @@
         rtl: false,
 
         // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'grid',
+        navigationMode: 'linear',
 
         // Randomizes the order of slides each time the presentation loads
         shuffle: false,
