@@ -1,0 +1,107 @@
+[
+  {
+    "objectID": "slides/index.html#agenda",
+    "href": "slides/index.html#agenda",
+    "title": "business-intelligence",
+    "section": "agenda",
+    "text": "agenda\n\nweb APIs & frameworks\ndevelopment workflows\ndeployment\nanalytics extensions"
+  },
+  {
+    "objectID": "slides/index.html#what",
+    "href": "slides/index.html#what",
+    "title": "business-intelligence",
+    "section": "what?",
+    "text": "what?\n\nA server-side web API consists of one or more publicly exposed endpoints to a defined request–response message system, typically expressed in JSON or XML.\n– Wikipedia"
+  },
+  {
+    "objectID": "slides/index.html#what-1",
+    "href": "slides/index.html#what-1",
+    "title": "business-intelligence",
+    "section": "what?",
+    "text": "what?\n\n\n\n\nsequenceDiagram\n    client -&gt;&gt; server: request\n    server --&gt;&gt; client: response"
+  },
+  {
+    "objectID": "slides/index.html#why",
+    "href": "slides/index.html#why",
+    "title": "business-intelligence",
+    "section": "why",
+    "text": "why\n\nlanguage independent resource consumption\n\ni.e. “I don’t care what your program is written in as long as it answers my question”\n\nmodel serving\ncomplicated business logic"
+  },
+  {
+    "objectID": "slides/index.html#verbs",
+    "href": "slides/index.html#verbs",
+    "title": "business-intelligence",
+    "section": "VERBS",
+    "text": "VERBS\n\nGET\nPOST\nPATCH\nPUT\nDELETE"
+  },
+  {
+    "objectID": "slides/index.html#verbs-and-theology",
+    "href": "slides/index.html#verbs-and-theology",
+    "title": "business-intelligence",
+    "section": "VERBS and theology",
+    "text": "VERBS and theology\n“crud”\n\nGET (read)\nPOST (create | update)\nPATCH (update)\nPUT (create | update)\nDELETE (delete)"
+  },
+  {
+    "objectID": "slides/index.html#frameworks",
+    "href": "slides/index.html#frameworks",
+    "title": "business-intelligence",
+    "section": "frameworks",
+    "text": "frameworks\n\n\nR\n\n\n\nframework\nconnect\n\n\n\n\nplumber\n✅\n\n\nRServe\n\n\n\nRestRserve\n\n\n\nfiery\n\n\n\nambiorix\n\n\n\n\n\nPython\n\n\n\nframework\nconnect\n\n\n\n\nflask\n✅\n\n\nFastAPI\n✅\n\n\nQuart\n✅\n\n\nSanic\n✅\n\n\nFalcon\n✅\n\n\n\n\n\n\nwsgi, asgi"
+  },
+  {
+    "objectID": "slides/index.html#will-it-tableau",
+    "href": "slides/index.html#will-it-tableau",
+    "title": "business-intelligence",
+    "section": "will it tableau",
+    "text": "will it tableau\n\n\nR\n\n\n\nframework\ntableau\n\n\n\n\nplumber\n✅\n\n\nRServe\n✅\n\n\nfiery\n\n\n\nambiorix\n\n\n\nRestRserve\n\n\n\n\n\nPython\n\n\n\nframework\ntableau\n\n\n\n\nflask\n\n\n\nFastAPI\n✅\n\n\nQuart\n\n\n\nSanic\n\n\n\nFalcon\n\n\n\n\nsee also: tabpy"
+  },
+  {
+    "objectID": "slides/index.html#the-code",
+    "href": "slides/index.html#the-code",
+    "title": "business-intelligence",
+    "section": "the code",
+    "text": "the code\nfunction decorators:\n\nFastAPIPlumber\n\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\n\n\n#* Echo back the input\n#* @param msg The message to echo\n#* @get /echo\nfunction(msg=\"\") {\n  list(msg = paste0(\"The message is: '\", msg, \"'\"))\n}"
+  },
+  {
+    "objectID": "slides/index.html#api-docs",
+    "href": "slides/index.html#api-docs",
+    "title": "business-intelligence",
+    "section": "API docs",
+    "text": "API docs\n\nOpenAPI docs let you interact with an API from the web\n\nhttpbin\nFastAPI and Plumber generate these from your code\n\nFlask supports these through additional packages"
+  },
+  {
+    "objectID": "slides/index.html#exercise-1",
+    "href": "slides/index.html#exercise-1",
+    "title": "business-intelligence",
+    "section": "exercise 1",
+    "text": "exercise 1\n\nbuild the exercise environment in your preferred language\ngo to the “vanilla” folder\nlaunch the API and explore its behavior from the docs\n\n\nRPython\n\n\nrenv::restore()\n\n\npython -m venv .venv\nsource .venv/bin/activate\npython -m pip install -U pip setuptools wheel\npython -m pip install -r requirements.txt"
+  },
+  {
+    "objectID": "slides/index.html#testing-from-the-command-line",
+    "href": "slides/index.html#testing-from-the-command-line",
+    "title": "business-intelligence",
+    "section": "testing from the command line",
+    "text": "testing from the command line\n\ncurl: universally available, powerful, a bit onerous when data is involved\nhttpie: simple syntax, great for quick testing, written in Python"
+  },
+  {
+    "objectID": "slides/index.html#exercise-2",
+    "href": "slides/index.html#exercise-2",
+    "title": "business-intelligence",
+    "section": "exercise 2",
+    "text": "exercise 2\n\ninstall httpie\nusing httpie, test calling the API in your development environment\n\nuse the shorthand syntax for localhost"
+  },
+  {
+    "objectID": "slides/index.html#exercise-3",
+    "href": "slides/index.html#exercise-3",
+    "title": "business-intelligence",
+    "section": "exercise 3",
+    "text": "exercise 3\ndeploy your vanilla API to Connect"
+  },
+  {
+    "objectID": "slides/index.html#exercise-4",
+    "href": "slides/index.html#exercise-4",
+    "title": "business-intelligence",
+    "section": "exercise 4",
+    "text": "exercise 4\nstart the tableau version of the API in your preferred language"
+  }
+]
