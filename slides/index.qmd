@@ -2,7 +2,7 @@
 format: 
     revealjs: 
         theme: dark
-        navigation-mode: grid
+        navigation-mode: linear
         transition: fade
 from: markdown+emoji
 ---
